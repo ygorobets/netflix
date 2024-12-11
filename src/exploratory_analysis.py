@@ -14,6 +14,10 @@ def save_plot(plot_type, fig, filename, output_dir="../data/results/"):
     filename: Name of the file to save.
     output_dir: Directory to save the plot (default: "data/results").
   """
+
+    # Create the output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+
     if plot_type == "bar":
         plt.savefig(os.path.join(output_dir, filename + "_bar.png"))
     elif plot_type == "pie":
@@ -40,7 +44,7 @@ top_genres = genre_counts[genre_counts > threshold]
 top_genres['Other'] = other_genres
 
 # Create a horizontal bar plot
-fig, ax = plt.subplots(figsize=(10, 6))  # Create figure and axis objects
+fig, ax = plt.subplots(figsize=(10, 6))
 sns.barplot(ax=ax, x=top_genres.values, y=top_genres.index, orient='h', color='red')
 plt.title('Most Popular Genres on Netflix', fontsize=15)
 plt.xlabel('')
@@ -48,7 +52,7 @@ plt.ylabel('')
 plt.xticks(rotation=45, fontsize=12)
 plt.yticks(fontsize=12)
 plt.subplots_adjust(left=0.3)
-save_plot("bar", fig, "genre_analysis")  # Save the bar plot
+save_plot("bar", fig, "genre_analysis")
 
 # 2. Country analysis
 country_counts = df['country'].str.split(', ').explode().value_counts()
@@ -78,8 +82,8 @@ type_year_counts = df.groupby(['type', 'year_added']).size().unstack(fill_value=
 fig, ax = plt.subplots(figsize=(15, 6))
 sns.lineplot(data=type_year_counts.T, ax=ax)
 plt.title('Change in Number of Movies and TV Shows Added by Year', fontsize=15)
-plt.xlabel('Year')
-plt.ylabel('Number of Movies')
+plt.xlabel('')
+plt.ylabel('')
 plt.legend(title='Type', ncol=2, fontsize='small')
 plt.xticks(type_year_counts.columns, rotation=45)
 plt.grid(True, linestyle='--', alpha=0.7)
