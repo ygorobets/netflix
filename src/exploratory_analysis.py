@@ -99,7 +99,10 @@ save_plot("line", fig, "year_release_analysis")
 
 # 4. Month added analysis
 monthly_added_counts_by_type = df.groupby(['month_name_added', 'type']).size().reset_index(name='count')
-
+month_order = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+               'November', 'December']
+monthly_added_counts_by_type['month_name_added'] = pd.Categorical(monthly_added_counts_by_type['month_name_added'],
+                                                                  categories=month_order, ordered=True)
 # Create bar plot
 palette = ['#221f1f', '#b20710']
 fig, ax = plt.subplots(figsize=(18, 8))
