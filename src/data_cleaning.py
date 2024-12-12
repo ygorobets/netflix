@@ -47,6 +47,6 @@ print("\nData cleaning is done!")
 
 # Upload the cleaned file to GCP
 client = storage.Client()
-bucket = client.bucket('netflix-eda')
+bucket = client.bucket('netflix-eda')  # replace with your bucket name
 blob = bucket.blob('cleaned_data.json')
 blob.upload_from_filename('../data/cleaned_data.json')
