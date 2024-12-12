@@ -1,79 +1,102 @@
-Title: Netflix Exploration: A Look at Movies and TV Shows
+# Netflix Exploration ![img.png](img.png)
 
-Description:
+## Description:
 
-This project delves into a dataset of Netflix movies and TV shows, uncovering interesting insights about genres, countries of origin, release years, and monthly additions.
+This project delves into a dataset of Netflix movies and TV shows, uncovering interesting insights about genres, ratings, countries, release years, monthly additions and more.
 
-Key Features:
+## Key Features:
 
-Analyzes genre distribution to identify the most popular genres on Netflix.
-Explores the origin of movies and TV shows by looking at the countries involved.
-Investigates trends in the number of movies and TV shows added to Netflix by year.
-Analyzes the distribution of movie and TV show additions by month throughout the year.
-Requirements:
+* Analyzes genre distribution to identify the most popular genres on Netflix.
+* Explores the origin of movies and TV shows by looking at the countries involved.
+* Investigates trends in the number of movies and TV shows added to Netflix by year.
+* Analyzes the distribution of movie and TV show additions by month throughout the year.
+* Deeper analysis and visualization with interesting insights
 
-Python 3.x
-pandas
-matplotlib
-seaborn
-Kaggle API
-Installation:
+## Requirements:
 
-Clone this repository:
+* Programming language: Python
+* Tools: Git, Kaggle API, Google Cloud Storage, Jupyter
+
+## Installation:
+
+1. **Clone this Repository:**
+
 Bash
-
+```console
 git clone https://github.com/ygorobets/netflix
-Navigate to the project directory:
-Bash
-
 cd netflix
-Install required dependencies:
+```
+
+2. **Install the Required Dependencies:**
+
+Bash
+```console
+pip install -r requirements.txt
+```
+
+3. **Set up Kaggle API:**
+
+* Create a Kaggle account and go to your account settings.
+* Create a new API token.
+* Download the API token as a JSON file.
+* Move the JSON file to your home directory (~/.kaggle/kaggle.json on Linux, OSX, and at C:\Users\<Windows-username>\.kaggle\kaggle.json on Windows)
+
+4. **Download the Dataset:**
+
+* Install the Kaggle API client:
+
 Bash
 
-pip install pandas matplotlib seaborn kaggle
-Set up Kaggle API:
-Create a Kaggle account and go to your account settings.
-Create a new API token.
-Download the API token as a JSON file.
-Move the JSON file to your home directory (usually ~) and rename it to kaggle.json.
-Downloading the Dataset:
-
-Install the Kaggle API client:
-Bash
-
+```console
 pip install kaggle
-Authenticate to Kaggle: Make sure you have the Kaggle API token in your home directory as kaggle.json.
-Download the dataset:
+```
+* Authenticate to Kaggle: Make sure you have the Kaggle API token in your home directory as kaggle.json.
+
+* Run the script dataset_download.py to download dataset 
+
+5. **Review the Downloaded Dataset:** 
+
+Run the script data_overview.py to look at raw dataset 
+
+6. **Clean Data and Download Updated Dataset to Google Cloud Storage:**
+
+To upload your cleaned dataset to your Google Cloud Storage bucket, follow these simple steps:
+
+* Make sure you're authenticated:
+
 Bash
 
-path = kagglehub.dataset_download('shivamb/netflix-shows')
-Usage:
+```console
+gcloud auth application-default login
+```
+This will authenticate your local application with your Google Cloud account.
 
-Replace the data path: Update the data path in the script to point to the downloaded dataset.
-Run the script: python netflix_analysis.py (replace netflix_analysis.py with the actual script name if different)
+* Create 'netflix-eda' bucket in your Google Cloud Storage account or replace in the code with the actual name of your bucket.
+* Run the script cleaning.py to clean the data and upload the updated file to the bucket on Google Cloud Storage
+
+# Analysis and Visualisation:
+Run the script exploratory_analysis.py.
+
 This will generate plots and save them in the data/results directory.
 
-Results:
+**Results:**
 
 The script creates four visualizations:
 
-genre_analysis.png: Shows the most popular genres on Netflix.
-country_analysis.png: Analyzes countries of origin for movies and TV shows.
-year_added_analysis.png: Explores trends in the number of movies and TV shows added by year.
-month_added_analysis.png: Visualizes the distribution of movie and TV show additions by month.
-Further Exploration:
+* genre_analysis.png: Shows the most popular genres on Netflix.
+* country_analysis.png: Analyzes countries of origin for movies and TV shows.
+* year_release_analysis.png: Explores trends in the number of movies and TV shows released by year.
+* month_added_analysis.png: Visualizes the distribution of movie and TV show additions by month.
 
-This project provides a basic analysis of the Netflix data. You can extend it by:
+# Further Exploration:
 
-Analyzing ratings and user reviews.
-Exploring relationships between genres and release years.
-Investigating differences between movies and TV shows.
+You can find additional analysis and visualizations, as well as interesting insights in EDA.ipynb in the notebook directory.
+
+This project provides a basic analysis of the Netflix data. 
+
 Feel free to contribute to this project by adding more insights and visualizations.
 
-License:
 
-This project is licensed under the MIT License (see LICENSE file for details).
-
-Author:
+# Author:
 
 Yulia Gorobets
