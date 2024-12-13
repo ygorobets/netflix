@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 3. **Set up Kaggle API:**
 
-* Create a Kaggle account and go to your account settings.
+* Create a Kaggle account (https://www.kaggle.com/) and go to your account settings.
 * Create a new API token.
 * Download the API token as a JSON file.
 * Move the JSON file to your home directory (~/.kaggle/kaggle.json on Linux, OSX, and at C:\Users\<Windows-username>\.kaggle\kaggle.json on Windows)
