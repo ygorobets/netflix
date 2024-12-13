@@ -1,6 +1,5 @@
 import pandas as pd
 
-# Load the data
 df = pd.read_csv('../data/netflix_titles.csv')
 
 pd.set_option('display.max_colwidth', 10)
