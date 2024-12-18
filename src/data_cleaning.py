@@ -18,8 +18,7 @@ df.fillna({'director': 'Unknown', 'cast': 'Unknown', 'country': 'Unknown',
 print("\nMissing values handled. Updated info:")
 print(df.isnull().sum())
 
-df['date_added'] = df['date_added'].str.strip()
-df['date_added'] = pd.to_datetime(df['date_added'], format='%B %d, %Y')
+df['date_added'] = pd.to_datetime(df['date_added'].str.strip(), format='%B %d, %Y')
 df['year_added'] = df['date_added'].dt.year
 df['month_added'] = df['date_added'].dt.month
 df['month_name_added'] = df['date_added'].dt.month_name()
@@ -38,8 +37,18 @@ df.to_json('../data/cleaned_data.json', index=False)
 
 print('\nData cleaning is done!')
 
-client = storage.Client()
-bucket = client.bucket('netflix-eda')  # replace with your bucket name
-blob = bucket.blob('cleaned_data.json')
-blob.upload_from_filename('../data/cleaned_data.json')
-print(f'\n{blob.name} was uploaded to {bucket.name} bucket!')
+
+def upload_blob_to_gcs(bucket_name, source_file_path, destination_blob_name):
+    storage_client = storage.Client()
+    bucket_upload = storage_client.bucket(bucket_name)
+    blob = bucket_upload.blob(destination_blob_name)
+    blob.upload_from_filename(source_file_path)
+
+    print(f"File {source_file_path} uploaded to {bucket_name} as {destination_blob_name}")
+
+
+bucket = 'netflix-eda'
+source_file = '../data/cleaned_data.json'
+destination_blob = 'cleaned_data.json'
+
+upload_blob_to_gcs(bucket, source_file, destination_blob)
