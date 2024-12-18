@@ -4,20 +4,11 @@ import seaborn as sns
 import os
 import datetime
 
+df = pd.read_json('../data/cleaned_data.json')
 path = '../data/results/'
 
 
 def save_plot(plot_type, fig, filename, output_dir=path):
-    """
-  Saves the current plot figure based on its type.
-
-  Args:
-    plot_type: Type of plot (e.g., "bar", "pie", "line").
-    fig: Matplotlib figure object containing the plot.
-    filename: Name of the file to save.
-    output_dir: Directory to save the plot.
-  """
-
     os.makedirs(output_dir, exist_ok=True)
 
     extension_map = {
@@ -27,12 +18,8 @@ def save_plot(plot_type, fig, filename, output_dir=path):
     }
 
     output_path = os.path.join(output_dir, filename + extension_map.get(plot_type, '.png'))
-
     plt.savefig(output_path)
     plt.close(fig)
-
-
-df = pd.read_json('../data/cleaned_data.json')
 
 
 def set_common_plot_format(ax, title, xlabel='', ylabel='', rotation=0, fontsize=10):
@@ -71,7 +58,6 @@ other_countries = country_counts[country_counts <= threshold]
 other_countries = other_countries.sum()
 country_counts = country_counts[country_counts > threshold]
 country_counts['Other'] = other_countries
-country_counts_percent = country_counts / country_counts.sum() * 100
 
 palette = sns.color_palette('pastel')
 fig, ax = plt.subplots(figsize=(12, 10))

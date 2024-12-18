@@ -4,16 +4,6 @@ import kagglehub
 
 
 def download_and_move_dataset(dataset_name, destination_path, expected_file):
-    """
-    Downloads a dataset from Kaggle Hub, moves the specified file to the destination,
-    and optionally removes the source directory from the cache.
-
-    Args:
-        dataset_name (str): Name of the Kaggle dataset.
-        destination_path (str): Path to the destination directory.
-        expected_file (str): Name of the file to be moved.
-    """
-
     path = kagglehub.dataset_download(dataset_name)
     file_to_move = os.path.join(path, expected_file)
 
